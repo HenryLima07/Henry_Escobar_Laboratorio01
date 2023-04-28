@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,7 +34,7 @@ class BillBoardFragment : Fragment() {
 
     private lateinit var buttonFragmentNewMovie: FloatingActionButton
     private lateinit var recyclerViewMovies: RecyclerView
-    //private lateinit var cardViewFragmentStarWars: CardView
+    private  val MovieViewModel: MovieViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,9 +58,8 @@ class BillBoardFragment : Fragment() {
         bind()
         listeners()
 
-        val repository = MovieRepository(movies)
         val adapter = MovieAdapter()
-        adapter.setData(repository.getMovies())
+        adapter.setData(MovieViewModel.getMovies())
 
         recyclerViewMovies.adapter = adapter
         recyclerViewMovies.layoutManager = LinearLayoutManager(context)

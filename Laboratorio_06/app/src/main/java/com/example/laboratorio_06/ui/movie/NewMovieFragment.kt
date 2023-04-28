@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.laboratorio_06.R
 import com.example.laboratorio_06.data.model.MovieModel
@@ -33,6 +34,7 @@ class NewMovieFragment : Fragment() {
     private lateinit var editTextCategory : EditText
     private lateinit var editTextQualification : EditText
     private lateinit var editTextDescription : EditText
+    private val movieViewModel: MovieViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +96,8 @@ class NewMovieFragment : Fragment() {
             editTextDescription.text.toString(),
             editTextQualification.text.toString())
 
-        MovieRepository(movies).setMovies(newMovie)
+        movieViewModel.addMovies(newMovie)
+        //MovieRepository(movies).setMovies(newMovie)
     }
     companion object {
         /**
